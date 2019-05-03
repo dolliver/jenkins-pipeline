@@ -45,7 +45,7 @@ echo "version: ${IMAGE_TAG}" >> charts/${CHART_NAME}/Chart.yaml
 
 find "charts/${CHART_NAME}/" -type f -name "*.template" | while IFS= read -r template; do
     output="${template%.*}"
-    sigil -f "${template}" IMAGE_TAG="${IMAGE_TAG}" IMAGE_REPO="${IMAGE_REPO}" > "${output}"
+    sigil -f "${template}" IMAGE_TAG="${IMAGE_TAG}" IMAGE_REPO="${IMAGE_REPO}" KEYCLOAK_URL="${KEYCLOAK_URL}" > "${output}"
 done
 echo "Printing rendered Helm Values"
 cat charts/${CHART_NAME}/*values.yaml
